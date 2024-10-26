@@ -43,4 +43,4 @@ path = ".fixlang/deps/minilib-monad_0.1.0"
 
 [dependencies.git]
 repo = "https://github.com/pt9999/fixlang-minilib-monad.git"
-rev = "404360077b51bde308ac08610421d552a42916a6"
+rev = "1080cef6848bc554b38d87a82a7c636d864ef342"
