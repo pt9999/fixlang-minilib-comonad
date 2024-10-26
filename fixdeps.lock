@@ -1,9 +1,13 @@
-proj_file_hash = "1de4550b21f9dada7a51b55aead8aefb"
+proj_file_hash = "a7aaef31684e86118d4839fbbc0fc87e"
 
 [[dependencies]]
 name = "minilib-common"
 version = "0.1.1"
-path = "../fixlang-minilib-common"
+path = ".fixlang/deps/minilib-common_0.1.1"
+
+[dependencies.git]
+repo = "https://github.com/pt9999/fixlang-minilib-common.git"
+rev = "dc5748f90c98474905c6fa09e9472b2716100c40"
 
 [[dependencies]]
 name = "character"
@@ -35,4 +39,8 @@ rev = "3fd362bddf4592fef854a2b700836e17c1f5b30b"
 [[dependencies]]
 name = "minilib-monad"
 version = "0.1.0"
-path = "../fixlang-minilib-monad"
+path = ".fixlang/deps/minilib-monad_0.1.0"
+
+[dependencies.git]
+repo = "https://github.com/pt9999/fixlang-minilib-monad.git"
+rev = "404360077b51bde308ac08610421d552a42916a6"
