@@ -20,12 +20,12 @@ rev = "c72c2ca5c8052e21200633dea1fff53c945d8799"
 
 [[dependencies]]
 name = "time"
-version = "0.2.4"
-path = ".fixlang/deps/time_0.2.4"
+version = "0.2.5"
+path = ".fixlang/deps/time_0.2.5"
 
 [dependencies.git]
 repo = "https://github.com/tttmmmyyyy/fixlang-time.git"
-rev = "e64401e0c48c8fe7777e9ad2ecea76dd0a02848b"
+rev = "0344c52dc73d9ffe556387ed94077c0fab623296"
 
 [[dependencies]]
 name = "random"
@@ -38,9 +38,9 @@ rev = "b77979767813d7cabff93e36c7516a8f8f8e90de"
 
 [[dependencies]]
 name = "minilib-monad"
-version = "0.1.0"
-path = ".fixlang/deps/minilib-monad_0.1.0"
+version = "0.1.1"
+path = ".fixlang/deps/minilib-monad_0.1.1"
 
 [dependencies.git]
 repo = "https://github.com/pt9999/fixlang-minilib-monad.git"
-rev = "fe69df88e64547170439b7e6400e45d6e4b1979c"
+rev = "1bb28089aa5c3ea9055370d28daab5b680b5f13d"
