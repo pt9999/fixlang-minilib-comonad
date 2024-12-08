@@ -1,15 +1,6 @@
 proj_file_hash = "a7aaef31684e86118d4839fbbc0fc87e"
 
 [[dependencies]]
-name = "minilib-monad"
-version = "0.2.0"
-path = ".fixlang/deps/minilib-monad_0.2.0"
-
-[dependencies.git]
-repo = "https://github.com/pt9999/fixlang-minilib-monad.git"
-rev = "c0fcf93f1b4770be4cda4523e44f50f44d5e0a08"
-
-[[dependencies]]
 name = "minilib-common"
 version = "0.2.0"
 path = ".fixlang/deps/minilib-common_0.2.0"
@@ -35,3 +26,12 @@ path = ".fixlang/deps/time_1.0.0"
 [dependencies.git]
 repo = "https://github.com/tttmmmyyyy/fixlang-time.git"
 rev = "0df92cf1c3ffc148d658c1a554c94105aef13520"
+
+[[dependencies]]
+name = "minilib-monad"
+version = "0.2.1"
+path = ".fixlang/deps/minilib-monad_0.2.1"
+
+[dependencies.git]
+repo = "https://github.com/pt9999/fixlang-minilib-monad.git"
+rev = "990c643a0d5a75eb6a82adf37b318c3dcfe85a60"
