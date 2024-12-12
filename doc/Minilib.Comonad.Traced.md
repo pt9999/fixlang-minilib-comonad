@@ -46,21 +46,3 @@ Creates a traced comonad from a function.
 ### `traced_t : [w : Minilib.Trait.Comonad::Comonad] w (e -> a) -> Minilib.Comonad.Traced::TracedT e w a`
 
 Creates a generic traced comonad from a function.
-
-## `namespace Minilib.Comonad.Traced::TracedT`
-
-### `@data : Minilib.Comonad.Traced::TracedT e w a -> w (e -> a)`
-
-Retrieves the field `data` from a value of `TracedT`.
-
-### `act_data : [f : Std::Functor] (w (e -> a) -> f (w (e -> a))) -> Minilib.Comonad.Traced::TracedT e w a -> f (Minilib.Comonad.Traced::TracedT e w a)`
-
-Updates a value of `TracedT` by applying a functorial action to field `data`.
-
-### `mod_data : (w (e -> a) -> w (e -> a)) -> Minilib.Comonad.Traced::TracedT e w a -> Minilib.Comonad.Traced::TracedT e w a`
-
-Updates a value of `TracedT` by applying a function to field `data`.
-
-### `set_data : w (e -> a) -> Minilib.Comonad.Traced::TracedT e w a -> Minilib.Comonad.Traced::TracedT e w a`
-
-Updates a value of `TracedT` by setting field `data` to a specified one.

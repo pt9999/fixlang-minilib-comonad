@@ -52,37 +52,3 @@ Gets the value from an env comonad.
 ### `to_tuple : [w : Minilib.Trait.Comonad::Comonad] Minilib.Comonad.Env::EnvT e w a -> (e, a)`
 
 Converts a env comonad to a pair of an enviroment and a value.
-
-## `namespace Minilib.Comonad.Env::EnvT`
-
-### `@env : Minilib.Comonad.Env::EnvT e w a -> e`
-
-Retrieves the field `env` from a value of `EnvT`.
-
-### `@value : Minilib.Comonad.Env::EnvT e w a -> w a`
-
-Retrieves the field `value` from a value of `EnvT`.
-
-### `act_env : [f : Std::Functor] (e -> f e) -> Minilib.Comonad.Env::EnvT e w a -> f (Minilib.Comonad.Env::EnvT e w a)`
-
-Updates a value of `EnvT` by applying a functorial action to field `env`.
-
-### `act_value : [f : Std::Functor] (w a -> f (w a)) -> Minilib.Comonad.Env::EnvT e w a -> f (Minilib.Comonad.Env::EnvT e w a)`
-
-Updates a value of `EnvT` by applying a functorial action to field `value`.
-
-### `mod_env : (e -> e) -> Minilib.Comonad.Env::EnvT e w a -> Minilib.Comonad.Env::EnvT e w a`
-
-Updates a value of `EnvT` by applying a function to field `env`.
-
-### `mod_value : (w a -> w a) -> Minilib.Comonad.Env::EnvT e w a -> Minilib.Comonad.Env::EnvT e w a`
-
-Updates a value of `EnvT` by applying a function to field `value`.
-
-### `set_env : e -> Minilib.Comonad.Env::EnvT e w a -> Minilib.Comonad.Env::EnvT e w a`
-
-Updates a value of `EnvT` by setting field `env` to a specified one.
-
-### `set_value : w a -> Minilib.Comonad.Env::EnvT e w a -> Minilib.Comonad.Env::EnvT e w a`
-
-Updates a value of `EnvT` by setting field `value` to a specified one.
