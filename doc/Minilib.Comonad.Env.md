@@ -33,7 +33,7 @@ Env comonad wraps a pair of an environment and a value.
 
 ## `namespace Minilib.Comonad.Env::Env`
 
-### `env : e -> a -> Minilib.Comonad.Env::EnvT e Minilib.Comonad.IdentityC::IdentityC a`
+### `env : e -> a -> Minilib.Comonad.Env::Env e a`
 
 Creates an env comonad from an enviroment and a value.
 

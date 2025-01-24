@@ -31,7 +31,7 @@ Traced comonad.
 
 ## `namespace Minilib.Comonad.Traced::Traced`
 
-### `run_traced : e -> Minilib.Comonad.Traced::TracedT e Minilib.Comonad.IdentityC::IdentityC a -> a`
+### `run_traced : e -> Minilib.Comonad.Traced::Traced e a -> a`
 
 Runs a traced commonad with the supplied environment.
 
@@ -39,7 +39,7 @@ Runs a traced commonad with the supplied environment.
 
 Runs a generic traced commonad with the supplied environment.
 
-### `traced : (e -> a) -> Minilib.Comonad.Traced::TracedT e Minilib.Comonad.IdentityC::IdentityC a`
+### `traced : (e -> a) -> Minilib.Comonad.Traced::Traced e a`
 
 Creates a traced comonad from a function.
 
