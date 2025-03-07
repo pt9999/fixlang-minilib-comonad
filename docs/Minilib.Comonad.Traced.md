@@ -1,48 +1,64 @@
-# `module Minilib.Comonad.Traced`
+# Minilib.Comonad.Traced
+
+Defined in minilib-comonad@0.5.1
 
 Traced comonad. (a.k.a CoWriter comonad)
 
 For details, see [blog post: The Reader and Writer Monads and Comonads](https://www.olivierverdier.com/posts/2014/12/31/reader-writer-monad-comonad/).
 
-# Types and aliases
+## Values
 
-## `namespace Minilib.Comonad.Traced`
+### namespace Minilib.Comonad.Traced::Traced
 
-### `type Traced = Minilib.Comonad.Traced::TracedT e Minilib.Comonad.IdentityC::IdentityC a`
+#### run_traced
 
-### `type [w : *->*] TracedT e w a = unbox struct { ...fields... }`
+Type: `e -> Minilib.Comonad.Traced::Traced e a -> a`
+
+Runs a traced commonad with the supplied environment.
+
+#### run_traced_t
+
+Type: `[w : Minilib.Trait.Comonad::Comonad] Minilib.Comonad.Traced::TracedT e w a -> w (e -> a)`
+
+Runs a generic traced commonad with the supplied environment.
+
+#### traced
+
+Type: `(e -> a) -> Minilib.Comonad.Traced::Traced e a`
+
+Creates a traced comonad from a function.
+
+#### traced_t
+
+Type: `[w : Minilib.Trait.Comonad::Comonad] w (e -> a) -> Minilib.Comonad.Traced::TracedT e w a`
+
+Creates a generic traced comonad from a function.
+
+## Types and aliases
+
+### namespace Minilib.Comonad.Traced
+
+#### Traced
+
+Defined as: `type Traced e a = Minilib.Comonad.Traced::TracedT e Minilib.Comonad.IdentityC::IdentityC a`
+
+#### TracedT
+
+Defined as: `type [w : *->*] TracedT e w a = unbox struct { ...fields... }`
 
 Traced comonad.
 `e` is a type of an environment.
 `w` is a type of an underlyind comonad.
 `a` is a type of a value.
 
-#### field `data : w (e -> a)`
+##### field `data`
 
-# Traits and aliases
+Type: `w (e -> a)`
 
-# Trait implementations
+## Traits and aliases
 
-### `impl [e : Minilib.Trait.Monoid::Monoid, w : Minilib.Trait.Comonad::Comonad] Minilib.Comonad.Traced::TracedT e w : Minilib.Trait.Comonad::Comonad`
+## Trait implementations
 
-### `impl [w : Minilib.Trait.Comonad::Comonad] Minilib.Comonad.Traced::TracedT e w : Std::Functor`
+### impl `[e : Minilib.Trait.Monoid::Monoid, w : Minilib.Trait.Comonad::Comonad] Minilib.Comonad.Traced::TracedT e w : Minilib.Trait.Comonad::Comonad`
 
-# Values
-
-## `namespace Minilib.Comonad.Traced::Traced`
-
-### `run_traced : e -> Minilib.Comonad.Traced::Traced e a -> a`
-
-Runs a traced commonad with the supplied environment.
-
-### `run_traced_t : [w : Minilib.Trait.Comonad::Comonad] Minilib.Comonad.Traced::TracedT e w a -> w (e -> a)`
-
-Runs a generic traced commonad with the supplied environment.
-
-### `traced : (e -> a) -> Minilib.Comonad.Traced::Traced e a`
-
-Creates a traced comonad from a function.
-
-### `traced_t : [w : Minilib.Trait.Comonad::Comonad] w (e -> a) -> Minilib.Comonad.Traced::TracedT e w a`
-
-Creates a generic traced comonad from a function.
+### impl `[w : Minilib.Trait.Comonad::Comonad] Minilib.Comonad.Traced::TracedT e w : Std::Functor`

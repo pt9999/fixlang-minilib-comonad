@@ -1,54 +1,74 @@
-# `module Minilib.Comonad.Env`
+# Minilib.Comonad.Env
+
+Defined in minilib-comonad@0.5.1
 
 Env comonad. (a.k.a CoReader comonad)
 
 For details, see [blog post: The Reader and Writer Monads and Comonads](https://www.olivierverdier.com/posts/2014/12/31/reader-writer-monad-comonad/).
 
-# Types and aliases
+## Values
 
-## `namespace Minilib.Comonad.Env`
+### namespace Minilib.Comonad.Env::Env
 
-### `type Env = Minilib.Comonad.Env::EnvT e Minilib.Comonad.IdentityC::IdentityC a`
+#### env
 
-### `type [w : *->*] EnvT e w a = unbox struct { ...fields... }`
+Type: `e -> a -> Minilib.Comonad.Env::Env e a`
+
+Creates an env comonad from an enviroment and a value.
+
+#### env_t
+
+Type: `[w : Minilib.Trait.Comonad::Comonad] e -> w a -> Minilib.Comonad.Env::EnvT e w a`
+
+Creates a generic env comonad from an enviroment and a value.
+
+#### get_env
+
+Type: `[w : Minilib.Trait.Comonad::Comonad] Minilib.Comonad.Env::EnvT e w a -> e`
+
+Gets the envirionment from an env comonad.
+
+#### get_value
+
+Type: `[w : Minilib.Trait.Comonad::Comonad] Minilib.Comonad.Env::EnvT e w a -> a`
+
+Gets the value from an env comonad.
+
+#### to_tuple
+
+Type: `[w : Minilib.Trait.Comonad::Comonad] Minilib.Comonad.Env::EnvT e w a -> (e, a)`
+
+Converts a env comonad to a pair of an enviroment and a value.
+
+## Types and aliases
+
+### namespace Minilib.Comonad.Env
+
+#### Env
+
+Defined as: `type Env e a = Minilib.Comonad.Env::EnvT e Minilib.Comonad.IdentityC::IdentityC a`
+
+#### EnvT
+
+Defined as: `type [w : *->*] EnvT e w a = unbox struct { ...fields... }`
 
 Env comonad wraps a pair of an environment and a value.
 `e` is a type of an environment.
 `w` is a type of an underlyind comonad.
 `a` is a type of a value.
 
-#### field `env : e`
+##### field `env`
 
-#### field `value : w a`
+Type: `e`
 
-# Traits and aliases
+##### field `value`
 
-# Trait implementations
+Type: `w a`
 
-### `impl [w : Minilib.Trait.Comonad::Comonad] Minilib.Comonad.Env::EnvT e w : Minilib.Trait.Comonad::Comonad`
+## Traits and aliases
 
-### `impl [w : Minilib.Trait.Comonad::Comonad] Minilib.Comonad.Env::EnvT e w : Std::Functor`
+## Trait implementations
 
-# Values
+### impl `[w : Minilib.Trait.Comonad::Comonad] Minilib.Comonad.Env::EnvT e w : Minilib.Trait.Comonad::Comonad`
 
-## `namespace Minilib.Comonad.Env::Env`
-
-### `env : e -> a -> Minilib.Comonad.Env::Env e a`
-
-Creates an env comonad from an enviroment and a value.
-
-### `env_t : [w : Minilib.Trait.Comonad::Comonad] e -> w a -> Minilib.Comonad.Env::EnvT e w a`
-
-Creates a generic env comonad from an enviroment and a value.
-
-### `get_env : [w : Minilib.Trait.Comonad::Comonad] Minilib.Comonad.Env::EnvT e w a -> e`
-
-Gets the envirionment from an env comonad.
-
-### `get_value : [w : Minilib.Trait.Comonad::Comonad] Minilib.Comonad.Env::EnvT e w a -> a`
-
-Gets the value from an env comonad.
-
-### `to_tuple : [w : Minilib.Trait.Comonad::Comonad] Minilib.Comonad.Env::EnvT e w a -> (e, a)`
-
-Converts a env comonad to a pair of an enviroment and a value.
+### impl `[w : Minilib.Trait.Comonad::Comonad] Minilib.Comonad.Env::EnvT e w : Std::Functor`
