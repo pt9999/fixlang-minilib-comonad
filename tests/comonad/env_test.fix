@@ -42,9 +42,9 @@ test_env_comonad: TestCase;
 test_env_comonad = (
     make_test("test_env_comonad") $ |_|
     let e = env(user("taro", 12), ());
-    let _ = *assert_equal("eq", "name=taro,age=12", e.get_profile);
+    assert_equal("eq", "name=taro,age=12", e.get_profile);;
     let e = env(user("hanako", 11), ());
-    let _ = *assert_equal("eq", "name=hanako,age=11", e.get_profile);
+    assert_equal("eq", "name=hanako,age=11", e.get_profile);;
     pure()
 );
 
@@ -54,16 +54,16 @@ test_env_comonad_laws = (
     let w = env("a", 1);
     let f: Env String I64 -> String = |w| w.get_env + w.get_value.to_string;
     let g: Env String String -> String = |w| w.get_value.to_string + w.get_env;
-    let _ = *assert_equal("", ("a", 1), w.extend(extract).to_tuple);
-    let _ = *assert_equal("", "a1", w.extend(f).extract);
-    let _ = *assert_equal("", ("a", "a1a"), w.extend(f).extend(g).to_tuple);
-    let _ = *assert_equal("", ("a", "a1a"), w.extend(extend(f) >> g).to_tuple);
-    let _ = *assert_equal("", ("a", 1), w.duplicate.extract.to_tuple);
-    let _ = *assert_equal("", ("a", 1), w.duplicate.map(extract).to_tuple);
-    let _ = *assert_equal("", ("a", "a1"), w.extend(f).to_tuple);
-    let _ = *assert_equal("", ("a", "a1"), w.duplicate.map(f).to_tuple);
-    let _ = *assert_equal("", ("a", "1"), w.map(to_string).to_tuple);
-    let _ = *assert_equal("", ("a", "1"), w.extend(to_string << extract).to_tuple);
+    assert_equal("", ("a", 1), w.extend(extract).to_tuple);;
+    assert_equal("", "a1", w.extend(f).extract);;
+    assert_equal("", ("a", "a1a"), w.extend(f).extend(g).to_tuple);;
+    assert_equal("", ("a", "a1a"), w.extend(extend(f) >> g).to_tuple);;
+    assert_equal("", ("a", 1), w.duplicate.extract.to_tuple);;
+    assert_equal("", ("a", 1), w.duplicate.map(extract).to_tuple);;
+    assert_equal("", ("a", "a1"), w.extend(f).to_tuple);;
+    assert_equal("", ("a", "a1"), w.duplicate.map(f).to_tuple);;
+    assert_equal("", ("a", "1"), w.map(to_string).to_tuple);;
+    assert_equal("", ("a", "1"), w.extend(to_string << extract).to_tuple);;
     pure()
 );
 
