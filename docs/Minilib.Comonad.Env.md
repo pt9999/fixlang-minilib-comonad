@@ -1,6 +1,6 @@
 # Minilib.Comonad.Env
 
-Defined in minilib-comonad@0.5.8
+Defined in minilib-comonad@0.5.9
 
 Env comonad. (a.k.a CoReader comonad)
 
