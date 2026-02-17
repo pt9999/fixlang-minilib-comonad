@@ -2,14 +2,18 @@ module Test;
 
 import Minilib.Testing.UnitTest;
 
+import CofreeTest;
 import EnvTest;
 import IdentityCTest;
+import StoreTest;
 import TracedTest;
 
 testsuite: TestSuite;
 testsuite = [
+    ("CofreeTest", CofreeTest::main),
     ("EnvTest", EnvTest::main),
     ("IdentityCTest", IdentityCTest::main),
+    ("StoreTest", StoreTest::main),
     ("TracedTest", TracedTest::main),
 ];
 

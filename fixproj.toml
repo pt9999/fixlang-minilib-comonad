@@ -1,6 +1,6 @@
 [general]
 name = "minilib-comonad"
-version = "0.6.0"
+version = "0.6.1-alpha"
 fix_version = "1.3.0"
 authors = ["pt9999"]
 license = "MIT"
@@ -8,8 +8,10 @@ license = "MIT"
 [build]
 opt_level = "basic"
 files = [
+    "lib/comonad/cofree.fix",
     "lib/comonad/env.fix",
     "lib/comonad/identity_c.fix",
+    "lib/comonad/store.fix",
     "lib/comonad/traced.fix",
     "lib/trait/comonad.fix",
 ]
@@ -18,8 +20,10 @@ files = [
 opt_level = "basic"
 files = [
     "tests/test.fix",
+    "tests/comonad/cofree_test.fix",
     "tests/comonad/env_test.fix",
     "tests/comonad/identity_c_test.fix",
+    "tests/comonad/store_test.fix",
     "tests/comonad/traced_test.fix",
 ]
 
