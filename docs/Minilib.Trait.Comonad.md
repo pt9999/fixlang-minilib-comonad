@@ -1,6 +1,6 @@
 # Minilib.Trait.Comonad
 
-Defined in minilib-comonad@0.6.0
+Defined in minilib-comonad@0.6.1
 
 Comonad trait and associated functions.
 
