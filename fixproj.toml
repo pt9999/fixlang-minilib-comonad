@@ -11,6 +11,7 @@ files = [
     "lib/comonad/cofree.fix",
     "lib/comonad/env.fix",
     "lib/comonad/identity_c.fix",
+    "lib/comonad/iostore.fix",
     "lib/comonad/store.fix",
     "lib/comonad/traced.fix",
     "lib/trait/comonad.fix",
@@ -23,6 +24,7 @@ files = [
     "tests/comonad/cofree_test.fix",
     "tests/comonad/env_test.fix",
     "tests/comonad/identity_c_test.fix",
+    "tests/comonad/iostore_test.fix",
     "tests/comonad/store_test.fix",
     "tests/comonad/traced_test.fix",
 ]

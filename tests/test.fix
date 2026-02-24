@@ -5,6 +5,7 @@ import Minilib.Testing.UnitTest;
 import CofreeTest;
 import EnvTest;
 import IdentityCTest;
+import IOStoreTest;
 import StoreTest;
 import TracedTest;
 
@@ -13,6 +14,7 @@ testsuite = [
     ("CofreeTest", CofreeTest::main),
     ("EnvTest", EnvTest::main),
     ("IdentityCTest", IdentityCTest::main),
+    ("IOStoreTest", IOStoreTest::main),
     ("StoreTest", StoreTest::main),
     ("TracedTest", TracedTest::main),
 ];

@@ -1,0 +1,98 @@
+module IOStoreTest;
+
+import Minilib.Comonad.IOStore;
+import Minilib.Trait.Comonad;
+import Minilib.Text.StringEx;
+import Minilib.Testing.UnitTest;
+
+test_iostore_make_run_io_store: TestCase;
+test_iostore_make_run_io_store = (
+    make_test("test_iostore_make_run_io_store") $ |_|
+    IO::from_runner(|ios|
+        let wa: IOStore I64 = IOStore::make $ (ios, |ios| 42);
+        let (ios, f) = wa.run_io_store;
+        let res = do {
+            assert_equal("eq", 42, f(ios))
+        };
+        (ios, res)
+    ).from_io_result
+);
+
+test_iostore_functor: TestCase;
+test_iostore_functor = (
+    make_test("test_iostore_from_iostate_functor") $ |_|
+    let a = *IO::from_runner(|ios|
+        let wa: IOStore IOState = IOStore::from_iostate(ios);
+        let wa: IOStore I64 = wa.map(|ios| 42);
+        let wa: IOStore String = wa.map(to_string);
+        let (ios, f) = wa.run_io_store;
+        (ios, ok $ f(ios))
+    ).from_io_result;
+    assert_equal("eq", "42", a)
+);
+
+test_iostore_extract: TestCase;
+test_iostore_extract = (
+    make_test("test_iostore_extract") $ |_|
+    IO::from_runner(|ios|
+        let io: IO I64 = do {
+            println("message from test_iostore_extract");;
+            pure $ 42
+        };
+        let wa: IOStore IOState = IOStore::from_iostate(ios);
+        let wa: IOStore (IOState, I64) = wa.map(io.@runner);
+        let wa: IOStore (IOState, Result ErrMsg ()) = wa.map(map(|a|
+            assert_equal("eq", 42, a)
+        ));
+        (wa.extract: (IOState, Result ErrMsg ()))
+    ).from_io_result
+);
+
+test_iostore_extend: TestCase;
+test_iostore_extend = (
+    make_test("test_iostore_extend") $ |_|
+    let a = *IO::from_runner(|ios|
+        let io: IO I64 = do {
+            println("message from test_iostore_extend");;
+            pure $ 42
+        };
+        let wa: IOStore IOState = IOStore::from_iostate(ios);
+        let wa: IOStore (IOState, I64) = wa.map(io.@runner);
+        let wa: IOStore (IOState, String) = wa.extend(|wa| wa.extract.map(to_string));
+        wa.extract
+    ).lift;
+    assert_equal("eq", "42", a)
+);
+/*
+test_iostore_comonad_laws: TestCase;
+test_iostore_comonad_laws = (
+    make_test("test_iostore_comonad_laws") $ |_|
+    let w: IOStore I64 I64 = iostore $ (2, |s| s * s);
+    let f: IOStore I64 I64 -> U64 = |w| (w.extract + 10).to_U64;
+    let g: IOStore I64 U64 -> U32 = |w| (w.extract + 20_U64).to_U32;
+    let h: I64 -> String = to_string;
+    assert_equal("extend(extract) == id", w.get, w.extend(extract).get);;
+    assert_equal("extend(f).extract == f", f(w), w.extend(f).extract);;
+    assert_equal("extend(f).extend(g) == extend(extend(f) >> g)", w.extend(extend(f) >> g).get, w.extend(f).extend(g).get);;
+    assert_equal("duplicate.extract == id", w.get, w.duplicate.extract.get);;
+    assert_equal("duplicate.map(extract) == id", w.get, w.duplicate.map(extract).get);;
+    assert_equal("extend(f) == duplicate.map(f)", w.duplicate.map(f).get, w.extend(f).get);;
+    assert_equal("map(h) == extend(extract >> h)", w.map(h).get, w.extend(extract >> h).get);;
+    pure()
+);
+*/
+
+main: IO ();
+main = (
+    [
+        test_iostore_make_run_io_store,
+        test_iostore_functor,
+        test_iostore_extract,
+        test_iostore_extend,
+        //test_iostore_comonad_laws,
+        TestCase::empty
+    ]
+    .run_test_driver
+);
+
+
