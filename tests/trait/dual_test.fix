@@ -1,0 +1,163 @@
+module DualTest;
+
+import Minilib.Common.Common;
+import Minilib.Common.IORef;
+import Minilib.Comonad.Cofree;
+import Minilib.Comonad.Env;
+import Minilib.Comonad.IdentityC;
+import Minilib.Comonad.IOStore;
+import Minilib.Comonad.Store;
+import Minilib.Comonad.Traced;
+import Minilib.Monad.Error;
+import Minilib.Monad.Free;
+import Minilib.Monad.Iden;
+import Minilib.Monad.Reader;
+import Minilib.Monad.State;
+import Minilib.Monad.Writer;
+import Minilib.Trait.Comonad;
+import Minilib.Trait.Dual;
+import Minilib.Testing.UnitTest;
+
+test_zapp: TestCase;
+test_zapp = (
+    make_test("test_zapp") $ |_|
+    let arrow: I64 -> I64 -> I64 = add;     // Arrow I64 (I64 -> I64)
+    let tuple2: (I64, I64) = (20, 22);      // Tuple2 I64 I64
+    let a = zapp(arrow, tuple2);
+    assert_equal("eq", 42, a);;
+
+    let tuple2: (Array I64, I64 -> String) = ([10, 12, 20], to_string);
+    let arrow: Array I64 -> I64 = |arr| arr.to_iter.fold(0, add);
+    let str = zapp(tuple2, arrow);
+    assert_equal("eq", "42", str)
+);
+
+test_identity_identity_c_zap: TestCase;
+test_identity_identity_c_zap = (
+    make_test("test_identity_identity_c_zap") $ |_|
+    let identity: Identity I64 = Iden::make(42);
+    let identity_c: IdentityC String = IdentityC::make("hello");
+    let (i64, str) = zap(pair, identity, identity_c);
+    assert_equal("eq1", (42, "hello"), (i64, str));;
+    let (str, i64) = zap(pair, identity_c, identity);
+    assert_equal("eq2", (42, "hello"), (i64, str))
+);
+
+test_arrow_tuple2_zap: TestCase;
+test_arrow_tuple2_zap = (
+    make_test("test_arrow_tuple2_zap") $ |_|
+    let arrow: I64 -> U64 = |i| i.to_U64;
+    let tuple2: (I64, String) = (42, "hello");
+    let (u64, str) = zap(pair, arrow, tuple2);
+    assert_equal("eq1", (42_U64, "hello"), (u64, str));;
+    let (str, u64) = zap(pair, tuple2, arrow);
+    assert_equal("eq2", (42_U64, "hello"), (u64, str))
+);
+
+test_reader_env_zap: TestCase;
+test_reader_env_zap = (
+    make_test("test_reader_env_zap") $ |_|
+    let reader: Reader String I64 = do {
+        let str = *ask;
+        let i: I64 = str.from_string.catch(|errmsg| ok $ 0).as_ok;
+        pure $ i * 2
+    };
+    let env: Env String String = env("42", "hello");
+    let (i64, str) = zap(pair, reader, env);
+    assert_equal("eq1", (84, "hello"), (i64, str));;
+    let (str, i64) = zap(pair, env, reader);
+    assert_equal("eq2", (84, "hello"), (i64, str))
+);
+
+test_state_store_zap: TestCase;
+test_state_store_zap = (
+    make_test("test_state_store_zap") $ |_|
+    let state: State I64 String = do {
+        let i = *get_state;
+        let i = i * 2;
+        put_state(i);;
+        pure $ "state i=" + i.to_string
+    };
+    let store: Store I64 I64 = store $ (10, id);
+    let store: Store I64 I64 = store.seeks(add(11));
+    let store: Store I64 String = store.map(|i| "store i=" + i.to_string);
+    let (str1, str2) = zap(pair, state, store);
+    assert_equal("eq1", ("state i=42", "store i=42"), (str1, str2));;
+    let (str2, str1) = zap(pair, store, state);
+    assert_equal("eq2", ("state i=42", "store i=42"), (str1, str2))
+);
+
+test_writer_traced_zap: TestCase;
+test_writer_traced_zap = (
+    make_test("test_writer_traced_zap") $ |_|
+    let writer: Writer String I64 = do {
+        tell("Hello ");;
+        tell("World");;
+        pure $ 42
+    };
+    let traced: Traced String String = traced $ |s| s + "!";
+    let (i64, str) = zap(pair, writer, traced);
+    assert_equal("eq1", (42, "Hello World!"), (i64, str));;
+    let (str, i64) = zap(pair, traced, writer);
+    assert_equal("eq2", (42, "Hello World!"), (i64, str))
+);
+
+test_io_iostore_zap: TestCase;
+test_io_iostore_zap = (
+    make_test("test_io_iostore_zap") $ |_|
+    let counter: IORef I64 = *IORef::make(0);
+    let io: IO I64 = (
+        counter.mod(add(1));;
+        println("message from test_io_iostore_zap " + (*counter.get).to_string);;
+        pure $ 42
+    );
+    IO::from_runner(|ios|
+        let iostore: IOStore IOState = IOStore::from_iostate(ios);
+        let iostore: IOStore (IOState, I64) = iostore.map(|ios| (ios, 123));
+        let (a, (ios, b)) = zap(pair, io, iostore);
+        let res: Result ErrMsg () = do {
+            assert_equal("eq1", (42, 123), (a, b))
+        };
+        let iostore: IOStore (IOState, I64) = iostore.seek(ios);
+        let ((ios, b), a) = zap(pair, iostore, io);
+        let res: Result ErrMsg () = do {
+            res;;
+            assert_equal("eq2", (42, 123), (a, b))
+        };
+        (ios, res)
+    ).from_io_result;;
+    assert_equal("counter", 2, *counter.get)
+);
+
+test_free_cofree_zap: TestCase;
+test_free_cofree_zap = (
+    make_test("test_free_cofree_zap") $ |_|
+
+    let free: Free (Tuple2 I64) () = do {
+        let id: () -> () = id;
+        (10, id).lift_f;;
+        (12, id).lift_f;;
+        (20, id).lift_f;;
+        pure()
+    };
+    let cofree: Cofree (Arrow I64) (Array I64) = unfold(|arr| (arr, |i| arr.push_back(i)), []);
+    let (unit, arr) = zap(pair, free, cofree);
+    assert_equal("eq1", ((), [10, 12, 20]), (unit, arr));;
+    let (arr, unit) = zap(pair, cofree, free);
+    assert_equal("eq2", ((), [10, 12, 20]), (unit, arr))
+);
+
+main: IO ();
+main = (
+    [
+        test_zapp,
+        test_identity_identity_c_zap,
+        test_arrow_tuple2_zap,
+        test_reader_env_zap,
+        test_state_store_zap,
+        test_writer_traced_zap,
+        test_io_iostore_zap,
+        test_free_cofree_zap,
+    ]
+    .run_test_driver
+);

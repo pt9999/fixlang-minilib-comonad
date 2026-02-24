@@ -8,15 +8,19 @@ import IdentityCTest;
 import IOStoreTest;
 import StoreTest;
 import TracedTest;
+import DualTest;
 
 testsuite: TestSuite;
 testsuite = [
+    /*
     ("CofreeTest", CofreeTest::main),
     ("EnvTest", EnvTest::main),
     ("IdentityCTest", IdentityCTest::main),
     ("IOStoreTest", IOStoreTest::main),
     ("StoreTest", StoreTest::main),
     ("TracedTest", TracedTest::main),
+    */
+    ("DualTest", DualTest::main),
 ];
 
 

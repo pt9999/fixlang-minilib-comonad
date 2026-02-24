@@ -15,6 +15,7 @@ files = [
     "lib/comonad/store.fix",
     "lib/comonad/traced.fix",
     "lib/trait/comonad.fix",
+    "lib/trait/dual.fix",
 ]
 
 [build.test]
@@ -27,6 +28,7 @@ files = [
     "tests/comonad/iostore_test.fix",
     "tests/comonad/store_test.fix",
     "tests/comonad/traced_test.fix",
+    "tests/trait/dual_test.fix",
 ]
 
 [[dependencies]]
