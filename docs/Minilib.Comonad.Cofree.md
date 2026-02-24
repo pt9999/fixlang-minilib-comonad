@@ -1,6 +1,6 @@
 # Minilib.Comonad.Cofree
 
-Defined in minilib-comonad@0.6.1
+Defined in minilib-comonad@0.6.2
 
 ## Values
 
@@ -27,6 +27,8 @@ Type: `[f : Std::Functor] (b -> (a, f b)) -> b -> Minilib.Comonad.Cofree::Cofree
 #### unwrap
 
 Type: `[w : Minilib.Comonad.Cofree::ComonadCofreeIF] w a -> Minilib.Comonad.Cofree::ComonadCofreeIF::FunctorType w (w a)`
+
+Trait member of `Minilib.Comonad.Cofree::ComonadCofreeIF`
 
 ## Types and aliases
 

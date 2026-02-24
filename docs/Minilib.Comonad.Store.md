@@ -1,6 +1,6 @@
 # Minilib.Comonad.Store
 
-Defined in minilib-comonad@0.6.1
+Defined in minilib-comonad@0.6.2
 
 ## Values
 
@@ -76,11 +76,15 @@ default implementation of `seeks`.
 
 Type: `[f : Std::Functor, sw : Minilib.Comonad.Store::ComonadStoreIF] (Minilib.Comonad.Store::ComonadStoreIF::PositionType sw -> f (Minilib.Comonad.Store::ComonadStoreIF::PositionType sw)) -> sw a -> f a`
 
+Trait member of `Minilib.Comonad.Store::ComonadStoreIF`
+
 Takes measurements at various positions.
 
 #### peek
 
 Type: `[sw : Minilib.Comonad.Store::ComonadStoreIF] Minilib.Comonad.Store::ComonadStoreIF::PositionType sw -> sw a -> a`
+
+Trait member of `Minilib.Comonad.Store::ComonadStoreIF`
 
 Peeks the value at the specified position.
 
@@ -88,11 +92,15 @@ Peeks the value at the specified position.
 
 Type: `[sw : Minilib.Comonad.Store::ComonadStoreIF] (Minilib.Comonad.Store::ComonadStoreIF::PositionType sw -> Minilib.Comonad.Store::ComonadStoreIF::PositionType sw) -> sw a -> a`
 
+Trait member of `Minilib.Comonad.Store::ComonadStoreIF`
+
 Peeks the value at the position relative to the current position.
 
 #### pos
 
 Type: `[sw : Minilib.Comonad.Store::ComonadStoreIF] sw a -> Minilib.Comonad.Store::ComonadStoreIF::PositionType sw`
+
+Trait member of `Minilib.Comonad.Store::ComonadStoreIF`
 
 Gets the current position.
 
@@ -100,11 +108,15 @@ Gets the current position.
 
 Type: `[sw : Minilib.Comonad.Store::ComonadStoreIF] Minilib.Comonad.Store::ComonadStoreIF::PositionType sw -> sw a -> sw a`
 
+Trait member of `Minilib.Comonad.Store::ComonadStoreIF`
+
 Seeks the current position to the specified position.
 
 #### seeks
 
 Type: `[sw : Minilib.Comonad.Store::ComonadStoreIF] (Minilib.Comonad.Store::ComonadStoreIF::PositionType sw -> Minilib.Comonad.Store::ComonadStoreIF::PositionType sw) -> sw a -> sw a`
+
+Trait member of `Minilib.Comonad.Store::ComonadStoreIF`
 
 Seeks the current position with the specified function.
 

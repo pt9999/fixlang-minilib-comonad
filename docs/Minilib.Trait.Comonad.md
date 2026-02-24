@@ -1,6 +1,6 @@
 # Minilib.Trait.Comonad
 
-Defined in minilib-comonad@0.6.1
+Defined in minilib-comonad@0.6.2
 
 Comonad trait and associated functions.
 
@@ -22,6 +22,8 @@ Duplicates a comonad.
 
 Type: `[w : Minilib.Trait.Comonad::Comonad] (w b -> a) -> w b -> w a`
 
+Trait member of `Minilib.Trait.Comonad::Comonad`
+
 Extends a comonad with a function.
 
 #### extendF
@@ -33,6 +35,8 @@ Flipped version of `extend`.
 #### extract
 
 Type: `[w : Minilib.Trait.Comonad::Comonad] w a -> a`
+
+Trait member of `Minilib.Trait.Comonad::Comonad`
 
 Extracts a value from a comonad.
 
