@@ -1,3 +1,6 @@
+## 0.6.2
+- Depends on minilib-common@0.12.3, minilib-monad@0.11.1.
+
 ## 0.6.1
 ### Added
 - Added `Minilib.Comonad.Cofree`, `Minilib.Comonad.Store`.
