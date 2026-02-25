@@ -79,14 +79,14 @@ impl Tuple2 e: Dual {
 impl [m: Monad, w: Comonad, m: Dual, DualOf m = w] ReaderT e m: Dual {
     type DualOf (ReaderT e m) = EnvT e (DualOf m);
     zap = |f, reader, env| (
-        zap(zap(f), reader.flip(run_reader_t), (env.@env, env.@value))
+        zap(zap(f), reader.flip(run_reader_t), env.run_env_t)
     );
 }
 
 impl [w: Comonad, m: Monad, w: Dual, DualOf w = m] EnvT e w: Dual {
     type DualOf (EnvT e w) = ReaderT e (DualOf w);
     zap = |f, env, reader| (
-        zap(zap(f), (env.@env, env.@value), reader.flip(run_reader_t))
+        zap(zap(f), env.run_env_t, reader.flip(run_reader_t))
     );
 }
 
