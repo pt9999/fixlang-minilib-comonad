@@ -62,7 +62,7 @@ test_reader_env_zap = (
         let i: I64 = str.from_string.catch(|errmsg| ok $ 0).as_ok;
         pure $ i * 2
     };
-    let env: Env String String = env("42", "hello");
+    let env: Env String String = env $ ("42", "hello");
     let (i64, str) = zap(pair, reader, env);
     assert_equal("eq1", (84, "hello"), (i64, str));;
     let (str, i64) = zap(pair, env, reader);

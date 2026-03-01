@@ -1,3 +1,12 @@
+## 0.7.0
+### Breaking Changes
+- Minilib.Comonad.Env:
+  - Uncurried arguments of `env_t`, `env`.
+  - Changed internal structure.
+  - Changed `Comonad::extend` implementation.
+### Fixed
+- fixed tests.
+
 ## 0.6.2
 - Added `Minilib.Trait.Dual`.
 - Added `Minilib.Comonad.IOStore`.
