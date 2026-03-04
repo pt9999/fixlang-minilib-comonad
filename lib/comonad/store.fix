@@ -61,7 +61,7 @@ type [w: * -> *] StoreT p w a = unbox struct {
 };
 
 // Store comonad.
-type Store p a = StoreT p IdentityC a;
+type Store p = StoreT p IdentityC;
 
 // Creates a store from a position and a comonad of a value function.
 //

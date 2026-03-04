@@ -16,7 +16,7 @@ type [w: * -> *] TracedT e w a = unbox struct {
     data: w (e -> a)
 };
 
-type Traced e a = TracedT e IdentityC a;
+type Traced e = TracedT e IdentityC;
 
 namespace Traced {
     // Creates a generic traced comonad from a function.

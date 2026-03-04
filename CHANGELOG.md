@@ -4,6 +4,11 @@
   - Uncurried arguments of `env_t`, `env`.
   - Changed internal structure.
   - Changed `Comonad::extend` implementation.
+  - Changed the kind of type alias `Env` to `* -> *` to prevent `Env e` from giving a "not fully applied" error.
+- Minilib.Comonad.Traced:
+  - Changed the kind of type alias `Traced` to `* -> *` to prevent `Traced e` from giving a "not fully applied" error.
+- Minilib.Comonad.Store:
+  - Changed the kind of type alias `Store` to `* -> *` to prevent `Store p` from giving a "not fully applied" error.
 ### Fixed
 - fixed tests.
 
