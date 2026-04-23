@@ -1,6 +1,6 @@
 # Minilib.Trait.Dual
 
-Defined in minilib-comonad@0.6.3
+Defined in minilib-comonad@0.6.4
 
 Dual functors.
 
