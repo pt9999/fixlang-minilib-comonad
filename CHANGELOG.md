@@ -1,3 +1,7 @@
+## 0.6.4
+### Changed
+- Removed indirect dependencies.
+
 ## 0.6.2
 - Added `Minilib.Trait.Dual`.
 - Added `Minilib.Comonad.IOStore`.
