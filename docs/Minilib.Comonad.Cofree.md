@@ -1,6 +1,6 @@
 # Minilib.Comonad.Cofree
 
-Defined in minilib-comonad@0.6.4
+Defined in minilib-comonad@0.6.5
 
 ## Values
 
