@@ -1,12 +1,13 @@
 # Minilib.Trait.Dual
 
-Defined in minilib-comonad@0.6.5
+Defined in minilib-comonad@0.6.6
 
 Dual functors.
 
 Dual functors are a pair of functors that can be annihilated with the `zap` function.
 
 Here is an example of a list of dual functors:
+
 - `Identity` <-> `IdentityC`
 - `Arrow e` <-> `Tuple2 e`
 - `ReaderT e m` <-> `EnvT e w`
