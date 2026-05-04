@@ -1,5 +1,6 @@
 ## 0.6.6
 ### Changed
+- Upgraded to minilib-monad@0.11.5.
 - Modified some code to remove the deprecation warnings.
 ### Fixed
 - Fixed testsuites.
