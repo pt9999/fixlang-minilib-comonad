@@ -37,21 +37,21 @@ test_identity_identity_c_zap = (
     make_test("test_identity_identity_c_zap") $ |_|
     let identity: Identity I64 = Iden::make(42);
     let identity_c: IdentityC String = IdentityC::make("hello");
-    let (i64, str) = zap(pair, identity, identity_c);
-    assert_equal("eq1", (42, "hello"), (i64, str));;
-    let (str, i64) = zap(pair, identity_c, identity);
-    assert_equal("eq2", (42, "hello"), (i64, str))
+    let (i64val, str) = zap(pair, identity, identity_c);
+    assert_equal("eq1", (42, "hello"), (i64val, str));;
+    let (str, i64val) = zap(pair, identity_c, identity);
+    assert_equal("eq2", (42, "hello"), (i64val, str))
 );
 
 test_arrow_tuple2_zap: TestCase;
 test_arrow_tuple2_zap = (
     make_test("test_arrow_tuple2_zap") $ |_|
-    let arrow: I64 -> U64 = |i| i.to_U64;
+    let arrow: I64 -> U64 = |i| i.u64;
     let tuple2: (I64, String) = (42, "hello");
-    let (u64, str) = zap(pair, arrow, tuple2);
-    assert_equal("eq1", (42_U64, "hello"), (u64, str));;
-    let (str, u64) = zap(pair, tuple2, arrow);
-    assert_equal("eq2", (42_U64, "hello"), (u64, str))
+    let (u64val, str) = zap(pair, arrow, tuple2);
+    assert_equal("eq1", (42_U64, "hello"), (u64val, str));;
+    let (str, u64val) = zap(pair, tuple2, arrow);
+    assert_equal("eq2", (42_U64, "hello"), (u64val, str))
 );
 
 test_reader_env_zap: TestCase;
@@ -63,10 +63,10 @@ test_reader_env_zap = (
         pure $ i * 2
     };
     let env: Env String String = env("42", "hello");
-    let (i64, str) = zap(pair, reader, env);
-    assert_equal("eq1", (84, "hello"), (i64, str));;
-    let (str, i64) = zap(pair, env, reader);
-    assert_equal("eq2", (84, "hello"), (i64, str))
+    let (i64val, str) = zap(pair, reader, env);
+    assert_equal("eq1", (84, "hello"), (i64val, str));;
+    let (str, i64val) = zap(pair, env, reader);
+    assert_equal("eq2", (84, "hello"), (i64val, str))
 );
 
 test_state_store_zap: TestCase;
@@ -96,10 +96,10 @@ test_writer_traced_zap = (
         pure $ 42
     };
     let traced: Traced String String = traced $ |s| s + "!";
-    let (i64, str) = zap(pair, writer, traced);
-    assert_equal("eq1", (42, "Hello World!"), (i64, str));;
-    let (str, i64) = zap(pair, traced, writer);
-    assert_equal("eq2", (42, "Hello World!"), (i64, str))
+    let (i64val, str) = zap(pair, writer, traced);
+    assert_equal("eq1", (42, "Hello World!"), (i64val, str));;
+    let (str, i64val) = zap(pair, traced, writer);
+    assert_equal("eq2", (42, "Hello World!"), (i64val, str))
 );
 
 test_io_iostore_zap: TestCase;

@@ -1,3 +1,9 @@
+## 0.6.6
+### Changed
+- Modified some code to remove the deprecation warnings.
+### Fixed
+- Fixed testsuites.
+
 ## 0.6.4
 ### Changed
 - Removed indirect dependencies.

@@ -98,8 +98,8 @@ test_store_comonad_laws: TestCase;
 test_store_comonad_laws = (
     make_test("test_store_comonad_laws") $ |_|
     let w: Store I64 I64 = store $ (2, |s| s * s);
-    let f: Store I64 I64 -> U64 = |w| (w.extract + 10).to_U64;
-    let g: Store I64 U64 -> U32 = |w| (w.extract + 20_U64).to_U32;
+    let f: Store I64 I64 -> U64 = |w| (w.extract + 10).u64;
+    let g: Store I64 U64 -> U32 = |w| (w.extract + 20_U64).u32;
     let h: I64 -> String = to_string;
     assert_equal("extend(extract) == id", w.get, w.extend(extract).get);;
     assert_equal("extend(f).extract == f", f(w), w.extend(f).extract);;
