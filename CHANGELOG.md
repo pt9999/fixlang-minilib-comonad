@@ -1,3 +1,10 @@
+## 0.7.0
+### Changed
+- Merged PR#1 (thanks to tttmmmyyyy san).
+  - Migrate to the unboxed-Array standard library.
+  - fixproj.toml: Bumped `fix_version` to 1.5.0.
+- Upgraded to minilib-monad@0.12.0.
+
 ## 0.6.6
 ### Changed
 - Upgraded to minilib-monad@0.11.5.
