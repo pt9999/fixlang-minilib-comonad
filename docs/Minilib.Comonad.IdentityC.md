@@ -1,6 +1,6 @@
 # Minilib.Comonad.IdentityC
 
-Defined in minilib-comonad@0.7.0
+Defined in minilib-comonad@0.7.1
 
 Identity comonad
 

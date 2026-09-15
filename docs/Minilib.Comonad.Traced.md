@@ -1,6 +1,6 @@
 # Minilib.Comonad.Traced
 
-Defined in minilib-comonad@0.7.0
+Defined in minilib-comonad@0.7.1
 
 Traced comonad. (a.k.a CoWriter comonad)
 
