@@ -1,13 +1,16 @@
 module EnvTest;
 
+import Minilib.Comonad.Env::{Env, Env::{env, get_env, get_value, to_tuple}};
+import Minilib.Testing.UnitTest::{assert_equal, make_test, run_test_driver, TestCase, TestCase::empty};
+import Minilib.Trait.Comonad::Comonad::{duplicate, extend, extract};
+import Std::{
+    Array, I64, IO, String, Add::add, Array::{push_back, to_iter}, Functor::map, Monad::pure, 
+    String::join, ToString::to_string
+};
 
-import Minilib.Comonad.Env;
+
 //import Minilib.Trait.Monoid;
 //import Minilib.Trait.Semigroup;
-import Minilib.Trait.Comonad;
-import Minilib.Text.StringEx;
-import Minilib.Testing.UnitTest;
-
 test_env_functor: TestCase;
 test_env_functor = (
     make_test("test_env_functor") $ |_|

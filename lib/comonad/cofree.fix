@@ -1,6 +1,7 @@
 module Minilib.Comonad.Cofree;
 
-import Minilib.Trait.Comonad;
+import Minilib.Trait.Comonad::Comonad;
+import Std::{Functor, Functor::map, Tuple2::@0};
 
 type [f: * -> *] Cofree f a = box struct {
     data: (a, f (Cofree f a))

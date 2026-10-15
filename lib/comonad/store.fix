@@ -1,7 +1,8 @@
 module Minilib.Comonad.Store;
 
-import Minilib.Comonad.IdentityC;
-import Minilib.Trait.Comonad;
+import Minilib.Comonad.IdentityC::{make, IdentityC};
+import Minilib.Trait.Comonad::{Comonad, Comonad::{duplicate, extend, extract}};
+import Std::{Functor, Functor::map};
 
 // A trait for the interface of store comonads.
 trait ComonadStore = Comonad + ComonadStoreIF;

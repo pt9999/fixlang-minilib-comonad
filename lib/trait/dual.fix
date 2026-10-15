@@ -16,19 +16,19 @@
 // [The Comonad.Reader: The Cofree Comonad and the Expression Problem](http://comonad.com/reader/2008/the-cofree-comonad-and-the-expression-problem/).
 module Minilib.Trait.Dual;
 
-import Minilib.Common.Common;
-import Minilib.Comonad.Cofree;
-import Minilib.Comonad.Env;
-import Minilib.Comonad.IdentityC;
-import Minilib.Comonad.IOStore;
-import Minilib.Comonad.Store;
-import Minilib.Comonad.Traced;
-import Minilib.Monad.IO;
-import Minilib.Monad.Free;
-import Minilib.Monad.Reader;
-import Minilib.Monad.State;
-import Minilib.Monad.Writer;
-import Minilib.Trait.Comonad;
+import Minilib.Common.Common::{flip, id};
+import Minilib.Comonad.Cofree::{run_cofree, Cofree};
+import Minilib.Comonad.Env::{EnvT, EnvT::{@env, @value}};
+import Minilib.Comonad.IOStore::{IOStore, IOStore::run_io_store};
+import Minilib.Comonad.IdentityC::{IdentityC, IdentityC::@data};
+import Minilib.Comonad.Store::{run_store_t, StoreT};
+import Minilib.Comonad.Traced::{TracedT, Traced::run_traced_t};
+import Minilib.Monad.Free::Free;
+import Minilib.Monad.Reader::{run_reader_t, ReaderT};
+import Minilib.Monad.State::{run_state_t, StateT};
+import Minilib.Monad.Writer::{run_writer_t, WriterT};
+import Minilib.Trait.Comonad::Comonad;
+import Std::{Arrow, IO, Identity, Monad, Tuple2, IO::@runner, Identity::@data};
 
 // --------------------------------------------------------------------------------
 // http://comonad.com/reader/2008/the-cofree-comonad-and-the-expression-problem/

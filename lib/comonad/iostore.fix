@@ -3,9 +3,13 @@
 // This is a specialized Store comonad whose state is `IOState`.
 module Minilib.Comonad.IOStore;
 
-import Minilib.Common.Common;
-import Minilib.Comonad.Store;
-import Minilib.Trait.Comonad;
+import Minilib.Common.Common::id;
+import Minilib.Comonad.Store::{
+    ComonadStoreIF, 
+    ComonadStore::Default::{default_experiment, default_peeks, default_seek, default_seeks}
+};
+import Minilib.Trait.Comonad::Comonad;
+import Std::{Functor, Functor::map, IO::IOState, Tuple2::{@0, @1}};
 
 // A specialized Store comonad whose state is `IOState`.
 type IOStore a = unbox struct {

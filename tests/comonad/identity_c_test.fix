@@ -1,9 +1,10 @@
 module IdentityCTest;
 
+import Minilib.Comonad.IdentityC::{get, make};
+import Minilib.Testing.UnitTest::{assert_equal, make_test, run_test_driver, TestCase, TestCase::empty};
+import Minilib.Trait.Comonad::Comonad::{extend, extract};
+import Std::{IO, Add::add, Functor::map, ToString::to_string};
 
-import Minilib.Comonad.IdentityC;
-import Minilib.Trait.Comonad;
-import Minilib.Testing.UnitTest;
 
 test_identity_c_functor: TestCase;
 test_identity_c_functor = (

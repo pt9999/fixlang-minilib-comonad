@@ -1,14 +1,14 @@
 module Test;
 
-import Minilib.Testing.UnitTest;
-
-import CofreeTest;
-import EnvTest;
-import IdentityCTest;
-import IOStoreTest;
-import StoreTest;
-import TracedTest;
-import DualTest;
+import CofreeTest::main;
+import DualTest::main;
+import EnvTest::main;
+import IOStoreTest::main;
+import IdentityCTest::main;
+import Minilib.Testing.UnitTest::{TestSuite, TestSuite::run};
+import Std::IO;
+import StoreTest::main;
+import TracedTest::main;
 
 testsuite: TestSuite;
 testsuite = [

@@ -1,22 +1,26 @@
 module DualTest;
 
-import Minilib.Common.Common;
-import Minilib.Common.IORef;
-import Minilib.Comonad.Cofree;
-import Minilib.Comonad.Env;
-import Minilib.Comonad.IdentityC;
-import Minilib.Comonad.IOStore;
-import Minilib.Comonad.Store;
-import Minilib.Comonad.Traced;
-import Minilib.Monad.Error;
-import Minilib.Monad.Free;
-import Minilib.Monad.Iden;
-import Minilib.Monad.Reader;
-import Minilib.Monad.State;
-import Minilib.Monad.Writer;
-import Minilib.Trait.Comonad;
-import Minilib.Trait.Dual;
-import Minilib.Testing.UnitTest;
+import Minilib.Common.Common::{id, pair};
+import Minilib.Common.IORef::{IORef, IORef::{get, make, mod}};
+import Minilib.Comonad.Cofree::{unfold, Cofree};
+import Minilib.Comonad.Env::{Env, Env::env};
+import Minilib.Comonad.IOStore::{IOStore, IOStore::from_iostate};
+import Minilib.Comonad.IdentityC::{make, IdentityC};
+import Minilib.Comonad.Store::{store, Store, ComonadStoreIF::{seek, seeks}};
+import Minilib.Comonad.Traced::{Traced, Traced::traced};
+import Minilib.Monad.Error::MonadErrorIF::catch;
+import Minilib.Monad.Free::{Free, Free::lift_f};
+import Minilib.Monad.Iden::make;
+import Minilib.Monad.Reader::{Reader, MonadReaderIF::ask};
+import Minilib.Monad.State::{State, MonadStateIF::{get_state, put_state}};
+import Minilib.Monad.Writer::{Writer, MonadWriterIF::tell};
+import Minilib.Testing.UnitTest::{assert_equal, make_test, run_test_driver, TestCase};
+import Minilib.Trait.Dual::{zapp, Dual::zap};
+import Std::{
+    Array, Arrow, ErrMsg, I64, IO, Identity, Result, String, Tuple2, U64, Add::add, Array::{push_back, to_iter}, 
+    FromString::from_string, Functor::map, IO::{from_runner, println, IOState, IOFail::from_io_result}, 
+    Iterator::fold, Monad::pure, Result::{as_ok, ok}, ToString::to_string, ToU64::u64
+};
 
 test_zapp: TestCase;
 test_zapp = (

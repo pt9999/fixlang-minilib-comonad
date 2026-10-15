@@ -1,9 +1,12 @@
 module StoreTest;
 
-import Minilib.Comonad.Store;
-import Minilib.Trait.Comonad;
-import Minilib.Text.StringEx;
-import Minilib.Testing.UnitTest;
+import Minilib.Comonad.Store::{get, store, Store, ComonadStoreIF::{experiment, peek, peeks, pos, seek, seeks}};
+import Minilib.Testing.UnitTest::{assert_equal, make_test, run_test_driver, TestCase, TestCase::empty};
+import Minilib.Trait.Comonad::Comonad::{duplicate, extend, extract};
+import Std::{
+    F64, I64, IO, String, U32, U64, Add::add, Functor::map, Iterator::{range, to_array}, Monad::pure, 
+    ToString::to_string, ToU32::u32, ToU64::u64
+};
 
 test_store_get: TestCase;
 test_store_get = (

@@ -1,9 +1,13 @@
 module IOStoreTest;
 
-import Minilib.Comonad.IOStore;
-import Minilib.Trait.Comonad;
-import Minilib.Text.StringEx;
-import Minilib.Testing.UnitTest;
+import Minilib.Comonad.IOStore::{IOStore, IOStore::{from_iostate, make, run_io_store}};
+import Minilib.Testing.UnitTest::{assert_equal, make_test, run_test_driver, TestCase, TestCase::empty};
+import Minilib.Trait.Comonad::Comonad::{extend, extract};
+import Std::{
+    ErrMsg, I64, IO, Result, String, Functor::map, 
+    IO::{@runner, from_runner, println, IOState, IOFail::{from_io_result, lift}}, Monad::pure, 
+    Result::ok, ToString::to_string
+};
 
 test_iostore_make_run_io_store: TestCase;
 test_iostore_make_run_io_store = (

@@ -3,10 +3,11 @@
 // For details, see [blog post: The Reader and Writer Monads and Comonads](https://www.olivierverdier.com/posts/2014/12/31/reader-writer-monad-comonad/).
 module Minilib.Comonad.Traced;
 
-import Minilib.Comonad.IdentityC;
-import Minilib.Trait.Monoid;
-import Minilib.Trait.Semigroup;
-import Minilib.Trait.Comonad;
+import Minilib.Comonad.IdentityC::{make, IdentityC};
+import Minilib.Trait.Comonad::{Comonad, Comonad::{extend, extract}};
+import Minilib.Trait.Monoid::{Monoid, MEmpty::mempty};
+import Minilib.Trait.Semigroup::Semigroup::sappend;
+import Std::Functor;
 
 // Traced comonad.
 // `e` is a type of an environment.

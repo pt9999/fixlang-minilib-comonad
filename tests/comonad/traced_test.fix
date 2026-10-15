@@ -1,11 +1,13 @@
 module TracedTest;
 
+import Minilib.Comonad.Traced::{Traced, Traced::{run_traced, traced}};
+import Minilib.Testing.UnitTest::{assert_equal, make_test, run_test_driver, TestCase, TestCase::empty};
+import Minilib.Trait.Comonad::Comonad::{duplicate, extend, extract};
+import Std::{
+    Array, IO, String, Add::add, Array::{@, to_iter}, Functor::map, Monad::pure, String::join, 
+    ToString::to_string
+};
 
-import Minilib.Comonad.Traced;
-import Minilib.Trait.Monoid;
-import Minilib.Trait.Comonad;
-import Minilib.Text.StringEx;
-import Minilib.Testing.UnitTest;
 
 test_traced_functor: TestCase;
 test_traced_functor = (

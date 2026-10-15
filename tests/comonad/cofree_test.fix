@@ -1,8 +1,13 @@
 module CofreeTest;
 
-import Minilib.Comonad.Cofree;
-import Minilib.Trait.Comonad;
-import Minilib.Testing.UnitTest;
+import Minilib.Comonad.Cofree::{cofree, coiter, run_cofree, unfold, Cofree, ComonadCofreeIF::unwrap};
+import Minilib.Testing.UnitTest::{assert_equal, make_test, run_test_driver, TestCase};
+import Minilib.Trait.Comonad::Comonad::{duplicate, extend, extract};
+import Std::{
+    loop, Array, Arrow, I64, IO, Iterator, Option, String, ToString, Add::add, Array::{push_back, to_iter}, 
+    Functor::map, Iterator::{advance, Item}, LoopState::{break, continue}, Option::{none, some}, 
+    ToString::to_string
+};
 
 type NonEmptyList a = Cofree Option a;
 
